@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="true" version="3">
+  <includeClasses>
+    <classEntry path="org.myhnuhai.util.ContextUtil"/>
+    <classEntry path="org.myhnuhai.util.DateUtil"/>
+    <classEntry path="org.myhnuhai.util.BusyCursorUtil"/>
+    <classEntry path="org.myhnuhai.util.FileUploadUtil"/>
+    <classEntry path="org.myhnuhai.domain.FileInfo"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
