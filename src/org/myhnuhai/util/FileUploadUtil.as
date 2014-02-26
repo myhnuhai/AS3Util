@@ -9,18 +9,23 @@ package org.myhnuhai.util
 	import flash.utils.ByteArray;
 	
 	import org.myhnuhai.domain.FileInfo;
+	import org.myhnuhai.events.UploadFileEvent;
 	
 	public class FileUploadUtil extends EventDispatcher
 	{
 		private var _fileReference:FileReference = new FileReference();
-		private var _fileInfo:FileInfo = new FileInfo();
+		
+		private var _fileInfo:FileInfo;
+		
 		public static var FILE_COMPLETE_EVENT:String = "File_Complete";
+		
 		public static var IMAGE_TYPE:FileFilter = new FileFilter("图片 (*.jpg, *.jpeg, *.gif,*.png)", "*.jpg; *.jpeg; *.gif; *.png");
 		public static var TEXT_TYPE:FileFilter = new FileFilter("文本文件(*.txt)","*.txt;");
 		public static var OFFICE_TYPE:FileFilter = new FileFilter("Office文件(*.doc, *.docx, *.ppt, *.pptx ,*.xls ,*.xlsx)","*.doc; *.docx; *.ppt; *.pptx; *.xls; *.xlsx");
 		public static var OFFICE_DOC_DOCX_TYPE:FileFilter = new FileFilter("Word文件(*.doc, *.docx)","*.doc; *.docx");
 		public static var ALL_TYPE:FileFilter = new FileFilter("所有文件(*.*)","*.*");
 		
+		 
 		public function get fileInfo():FileInfo
 		{
 			return _fileInfo;
@@ -41,6 +46,7 @@ package org.myhnuhai.util
 			_fileReference.browse(getFileFilter(fileType));
 		}
 		
+		//
 		private function getFileFilter(fileType:FileFilter):Array{
 			
 			var fileTypes:Array = new Array(fileType);
@@ -62,6 +68,7 @@ package org.myhnuhai.util
 		}
 		
 		private function completeHandler(event:Event):void{
+			_fileInfo = new FileInfo();
 			
 			_fileInfo.creationDate = _fileReference.creationDate;
 			_fileInfo.creator = _fileReference.creator;
@@ -70,7 +77,10 @@ package org.myhnuhai.util
 			_fileInfo.name = _fileReference.name;
 			_fileInfo.size = _fileReference.size;
 			_fileInfo.type = _fileReference.type;
-			this.dispatchEvent(new Event(FileUploadUtil.FILE_COMPLETE_EVENT));
+			
+			var dispatchEvt:UploadFileEvent = new UploadFileEvent(UploadFileEvent.FILE_COMPLETE_EVENT);
+			dispatchEvt.fileInfo = _fileInfo;
+			this.dispatchEvent(dispatchEvt);
 		}
 	}
 }

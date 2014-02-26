@@ -81,7 +81,6 @@ package org.myhnuhai.domain
 		{
 			_type = value;
 		}
-
-
+ 
 	}
 }

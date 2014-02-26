@@ -14,7 +14,6 @@ package org.myhnuhai.util
 		
 		
 		public static function string2Date(param:String):Date{
-			new Date().seconds
 			return new Date(Date.parse(param));
 		}
 		

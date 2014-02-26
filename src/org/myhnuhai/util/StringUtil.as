@@ -15,6 +15,7 @@ package org.myhnuhai.util
 			if(subStr != null && subStr.length > 0){
 				return subStr.substr(0,subStr.length-1);
 			}
+			
 			return subStr;
 		}
 	}
